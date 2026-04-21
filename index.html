@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danik Travel</title>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
+}
+
+body{
+  overflow:hidden;
+  color:white;
+}
+
+/* ===== ДВИЖУЩИЙСЯ ТУРИСТИЧЕСКИЙ ФОН ===== */
+.bg{
+  position:fixed;
+  inset:0;
+  background:url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=2000&q=80");
+  background-size:cover;
+  background-position:center;
+  filter:brightness(0.45) saturate(1.4);
+  animation: moveBg 20s ease-in-out infinite alternate;
+  z-index:0;
+}
+
+@keyframes moveBg{
+  0%{
+    transform: scale(1) translateY(0px);
+  }
+  100%{
+    transform: scale(1.2) translateY(-40px);
+  }
+}
+
+/* ===== ТЁМНЫЙ ОВЕРЛЕЙ ===== */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at center, transparent, #05060a 70%);
+  z-index:1;
+}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  z-index:2;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+/* ===== TITLE ===== */
+h1{
+  font-size:60px;
+  letter-spacing:3px;
+  text-shadow:0 0 10px #0ff, 0 0 30px #f0f;
+}
+
+p{
+  margin-top:10px;
+  opacity:0.8;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(90deg,#0ff,#7c3aed);
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 20px #0ff;
+  transition:0.3s;
+}
+.btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 40px #0ff;
+}
+
+/* ===== CARDS ===== */
+.cards{
+  margin-top:50px;
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.card{
+  width:200px;
+  padding:20px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.2);
+  box-shadow:0 0 20px rgba(0,255,255,0.2);
+  transform:translateY(50px);
+  opacity:0;
+  transition:0.3s;
+}
+.card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 30px #7c3aed;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+  h1{font-size:34px;}
+  .cards{flex-direction:column;align-items:center;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="overlay"></div>
+
+<div class="hero">
+
+  <h1>DANIK 🌄</h1>
+  <p>Travel • Adventure • Neon Experience</p>
+
+  <button class="btn">Explore World</button>
+
+  <div class="cards">
+    <div class="card">🏔 Mountains</div>
+    <div class="card">🚗 Road Trip</div>
+    <div class="card">🌊 Ocean View</div>
+  </div>
+
+</div>
+
+<script>
+
+// GSAP ANIMATION
+gsap.from("h1", {
+  y:-40,
+  opacity:0,
+  duration:1
+});
+
+gsap.from("p", {
+  opacity:0,
+  delay:0.3
+});
+
+gsap.from(".btn", {
+  scale:0,
+  opacity:0,
+  delay:0.5
+});
+
+gsap.to(".card", {
+  y:0,
+  opacity:1,
+  stagger:0.2,
+  delay:0.8,
+  duration:1
+});
+
+</script>
+
+</body>
+</html>
